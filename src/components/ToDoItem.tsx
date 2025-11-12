@@ -1,7 +1,7 @@
 // import { useAtom, type PrimitiveAtom } from "jotai"
 import { useAtom } from "jotai"
 import { categoriesState, IToDo, toDoState } from "../atoms"
-import { ToDoContentStyle, ToDoItemStyle } from "../ToDoStyle"
+import { DeleteButton, ToDoContentStyle, ToDoItemStyle } from "../ToDoStyle"
 
 /**
 type RemoveFn = (item: PrimitiveAtom<IToDo>) => void
@@ -49,6 +49,15 @@ function ToDoItem(item: IToDo) {
 		})
 	};
 
+	const onRemove = (event: React.MouseEvent<HTMLButtonElement>) => {
+		setList((oldList) => {
+			const result = oldList.filter((toDo) => toDo.id !== item.id);
+
+			localStorage.setItem("toDos", JSON.stringify(result));
+			return result;
+		});
+	};
+
 	return (
 		<ToDoItemStyle>
 			<ToDoContentStyle>{item.content}</ToDoContentStyle>
@@ -57,6 +66,7 @@ function ToDoItem(item: IToDo) {
 					<button key={category} name={category} onClick={onClick}>{category}</button>
 				)
 			))}
+			<DeleteButton onClick={onRemove}>x</DeleteButton>
 		</ToDoItemStyle>
 	);
 }

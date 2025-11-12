@@ -41,3 +41,16 @@ export const ToDoItemStyle = styled.li`
 export const ToDoContentStyle = styled.span`
 	flex-grow: 1;
 `;
+
+export const DeleteButton = styled.button`
+	width: 20px;
+	height: 20px;
+	background-color: red;
+	color: white;
+	border: 0px;
+	border-radius: 10px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
