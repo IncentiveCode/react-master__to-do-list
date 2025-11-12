@@ -65,7 +65,9 @@ function CategoryArea() {
 
 			<FormStyle style={{ justifyContent: 'end' }} onSubmit={handleSubmit(handleValid)}>
 				<input 
-					{...register("newCategory")}
+					{...register("newCategory", {
+						required: true
+					})}
 					placeholder="Write a new category"
 				/>
 				<input type="submit" value="Add Category" />
